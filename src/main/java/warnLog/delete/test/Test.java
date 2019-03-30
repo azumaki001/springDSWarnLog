@@ -5,7 +5,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class Test {
 
-	private void testMethod () {
+	public static void main (String arg[]) {
+		testMethod();
+	}
+
+	private static void testMethod () {
 		System.out.println("");
 	}
 }
