@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <b:bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+    <b:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    <b:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/seisanTest"/>
+    <b:property name="username" value="root"/>
+    <b:property name="password" value="root"/>
+  </b:bean>
+</b:beans>

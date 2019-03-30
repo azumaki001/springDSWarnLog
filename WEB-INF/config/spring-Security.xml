@@ -1,0 +1,44 @@
+<b:beans xmlns:sec="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
+  <sec:http auto-config="false" use-expressions="true" create-session="ifRequired" entry-point-ref="loginUrlAuthenticationEntryPoint">
+    <!-- 允许未认证用户访问：根目录，验证服务，验证错误服务，任意错误服务，静态资源image/css/js/html/vendor -->
+    <sec:intercept-url pattern="/" access="permitAll"/>
+    <sec:intercept-url pattern="/gotoLogin" access="permitAll"/>
+    <sec:intercept-url pattern="/authenticate" access="permitAll"/>
+    <sec:intercept-url pattern="/authError" access="permitAll"/>
+    <sec:intercept-url pattern="/error/**" access="permitAll"/>
+    <sec:intercept-url pattern="/images/**" access="permitAll"/>
+    <sec:intercept-url pattern="/css/**" access="permitAll"/>
+    <sec:intercept-url pattern="/js/**" access="permitAll"/>
+    <sec:intercept-url pattern="/templetes/**" access="permitAll"/>
+    <sec:intercept-url pattern="/vendors/**" access="permitAll"/>
+    <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
+
+    <sec:form-login login-page="/gotoLogin" login-processing-url="/authentication" default-target-url="/" always-use-default-target="true" authentication-failure-url="/gotoLogin"/>
+    <sec:logout delete-cookies="JSESSIONID" invalidate-session="false" logout-url="/gotoLogout" logout-success-url="/gotoLogin"/>
+    <sec:session-management invalid-session-url="/error/sessionTimeout" session-fixation-protection="newSession">
+      <sec:concurrency-control max-sessions="2"/>
+    </sec:session-management>
+  </sec:http>
+
+  <sec:authentication-manager alias="authManager">
+    <sec:authentication-provider user-service-ref="userDetailService">
+      <sec:password-encoder ref="passwordEncoder"/>
+    </sec:authentication-provider>
+  </sec:authentication-manager>
+
+  <b:bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+   <b:constructor-arg value="/"/>
+  </b:bean>
+
+  <b:bean id="userDetailService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+    <b:property name="dataSource" ref="dataSource"/>
+  </b:bean>
+
+  <b:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+</b:beans>
