@@ -26,25 +26,39 @@
     <artifactId>spring-security-web</artifactId>
     <version>4.2.11.RELEASE</version>
 </dependency>
-<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-config</artifactId>
     <version>4.2.11.RELEASE</version>
-</dependency> -->
+</dependency>
 <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-taglibs</artifactId>
     <version>4.2.11.RELEASE</version>
 </dependency> -->
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>4.3.22.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>4.3.2.Final</version>
+</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
 <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
 <dependency>
     <groupId>org.apache.tomcat</groupId>
     <artifactId>tomcat-catalina</artifactId>
-    <version>9.0.7</version>
+    <version>8.5.39</version>
 </dependency>
+
 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>
@@ -59,9 +73,35 @@
     <version>2.7.1</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf-spring4</artifactId>
+    <version>3.0.11.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 -->
+<dependency>
+    <groupId>org.thymeleaf.extras</groupId>
+    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+    <version>3.0.4.RELEASE</version>
+</dependency>
+
+
 
   </dependencies>
+
   <build>
     <finalName>springDSWarnLog</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
